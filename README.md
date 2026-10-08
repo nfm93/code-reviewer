@@ -83,8 +83,6 @@ code-reviewer/
     plugin.json
   agents/
     code-reviewer.md
-  commands/
-    code-reviewer.md
   skills/
     code-reviewer/
       SKILL.md
@@ -128,6 +126,8 @@ After changing plugin files locally, restart the ChatGPT desktop app or refresh 
 
 This repository also contains a Claude Code plugin manifest at `.claude-plugin/plugin.json`, a marketplace manifest at `.claude-plugin/marketplace.json`, and a `code-reviewer` subagent at `agents/code-reviewer.md`.
 
+Claude Code auto-discovers the subagent from `agents/code-reviewer.md` and the skill from `skills/code-reviewer/SKILL.md`.
+
 Install from a Git repository with Claude Code's plugin flow after publishing or pushing this repository:
 
 ```text
@@ -151,7 +151,7 @@ cp skills/code-reviewer/SKILL.md ~/.claude/skills/code-reviewer/SKILL.md
 Then use:
 
 ```text
-/code-reviewer review the uncommitted diff
+Delegate the review to code-reviewer:code-reviewer.
 ```
 
 or:
