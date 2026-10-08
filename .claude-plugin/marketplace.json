@@ -1,0 +1,14 @@
+{
+  "name": "code-reviewer-tools",
+  "owner": {
+    "name": "Local developer"
+  },
+  "description": "Claude Code tools for read-only code review.",
+  "plugins": [
+    {
+      "name": "code-reviewer",
+      "source": "./",
+      "description": "Independent, read-only code reviewer with diff, current-code, and review-loop support."
+    }
+  ]
+}

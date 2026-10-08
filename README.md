@@ -1,6 +1,8 @@
 # Code Reviewer
 
-Code Reviewer is a reusable Codex plugin that adds a read-only reviewer skill for codebases, diffs, and app-specific project reviews.
+Code Reviewer is a reusable read-only reviewer skill for codebases, diffs, and app-specific project reviews.
+
+It can be installed as a Codex plugin, Claude Code plugin, Cursor plugin, or standalone Agent Skill.
 
 It is designed to inspect code with fresh context, report actionable findings, and avoid editing files directly.
 
@@ -74,8 +76,19 @@ The reviewer infers project type from common files:
 
 ```text
 code-reviewer/
+  .claude-plugin/
+    marketplace.json
+    plugin.json
   .codex-plugin/
     plugin.json
+  .cursor-plugin/
+    plugin.json
+  agents/
+    code-reviewer.md
+  commands/
+    code-reviewer.md
+  rules/
+    code-reviewer.mdc
   skills/
     code-reviewer/
       SKILL.md
@@ -83,9 +96,84 @@ code-reviewer/
 
 ## Installation
 
+### Codex
+
 This repository contains a Codex plugin. Install it through the Codex plugin flow from the repository or add it to a local/personal plugin marketplace.
 
 For local development, keep the plugin folder available to Codex and register it in your personal marketplace.
+
+### Claude Code
+
+This repository also contains a Claude Code plugin manifest at `.claude-plugin/plugin.json`, a marketplace manifest at `.claude-plugin/marketplace.json`, and a `code-reviewer` subagent at `agents/code-reviewer.md`.
+
+Install from a Git repository with Claude Code's plugin flow after publishing or pushing this repository:
+
+```text
+/plugin marketplace add <path-or-git-url-of-this-repo>
+/plugin install code-reviewer@code-reviewer-tools
+```
+
+For local testing without installation:
+
+```bash
+claude --plugin-dir ./
+```
+
+For local/manual use without a marketplace, install only the skill:
+
+```bash
+mkdir -p ~/.claude/skills/code-reviewer
+cp skills/code-reviewer/SKILL.md ~/.claude/skills/code-reviewer/SKILL.md
+```
+
+Then use:
+
+```text
+/code-reviewer review the uncommitted diff
+```
+
+or:
+
+```text
+Delegate the review to the code-reviewer subagent.
+```
+
+### Claude.ai
+
+Zip the skill folder and upload it from Claude.ai's skill settings:
+
+```bash
+cd skills
+zip -r code-reviewer.zip code-reviewer
+```
+
+Upload `code-reviewer.zip` in Claude.ai under **Customize > Skills > Create skill > Upload a skill**.
+
+### Cursor
+
+This repository contains a Cursor plugin manifest at `.cursor-plugin/plugin.json`.
+
+The Cursor plugin exposes:
+
+- `agents/code-reviewer.md` as an independent reviewer agent
+- `skills/code-reviewer/SKILL.md` as the reusable reviewer skill
+- `rules/code-reviewer.mdc` as an on-request Cursor rule
+- `commands/code-reviewer.md` as an explicit review command
+
+For project-local use without publishing a plugin, copy the rule into a project:
+
+```bash
+mkdir -p .cursor/rules
+cp rules/code-reviewer.mdc .cursor/rules/code-reviewer.mdc
+```
+
+Then ask Cursor:
+
+```text
+@code-reviewer review the current diff
+```
+
+To publish as a Cursor plugin, push this repository publicly and submit it through Cursor's plugin marketplace flow.
 
 ## License
 
