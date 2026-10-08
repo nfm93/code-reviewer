@@ -98,9 +98,35 @@ code-reviewer/
 
 ### Codex
 
-This repository contains a Codex plugin. Install it through the Codex plugin flow from the repository or add it to a local/personal plugin marketplace.
+Add this repository as a plugin marketplace:
 
-For local development, keep the plugin folder available to Codex and register it in your personal marketplace.
+```bash
+codex plugin marketplace add nfm93/code-reviewer
+```
+
+Then open Codex and run:
+
+```text
+/plugins
+```
+
+Install **Code Reviewer**, enable it, and start a new chat.
+
+Use it with prompts like:
+
+```text
+review the uncommitted diff with code-reviewer
+review the whole project for bugs and test gaps
+review auth for security issues
+```
+
+For local development, clone this repository and add the local marketplace root instead:
+
+```bash
+codex plugin marketplace add /absolute/path/to/code-reviewer
+```
+
+After changing plugin files locally, restart the ChatGPT desktop app or refresh the marketplace so Codex picks up the latest plugin contents.
 
 ### Claude Code
 
