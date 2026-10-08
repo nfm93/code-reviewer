@@ -1,0 +1,23 @@
+{
+  "name": "code-reviewer",
+  "version": "0.1.0",
+  "description": "Read-only code review for diffs, current code, and app-specific project risks.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Code Reviewer",
+    "shortDescription": "Review diffs and current code without editing files.",
+    "longDescription": "Code Reviewer adds a reusable read-only reviewer skill for uncommitted diffs, selected files, full projects, and project-aware checks for Flutter, native mobile, web, and backend code.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [
+      "read-only code review",
+      "diff review",
+      "current code review",
+      "project-aware review"
+    ],
+    "defaultPrompt": "Review the current code or uncommitted diff with Code Reviewer."
+  }
+}
